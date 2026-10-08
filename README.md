@@ -53,7 +53,7 @@
 ```
 
 要求 JDK 17+,`local.properties` 配置 SDK 路径(或 ANDROID_HOME 环境变量)。
-Gradle 发行版走腾讯镜像(`gradle/wrapper/gradle-wrapper.properties`),依赖走阿里云镜像(`settings.gradle.kts`)。
+本地构建走阿里云镜像(`settings.gradle.kts`),GitHub Actions 上自动切换为官方仓库;Gradle 发行版走腾讯镜像。
 
 ## 目录结构
 
