@@ -1,8 +1,8 @@
 // CI 环境(GitHub Actions runner 在海外)走官方仓库;本地开发走阿里云镜像加速。
-// 本地仍保留官方仓库兜底,镜像不可达时可自动降级。
-val onCi = System.getenv("GITHUB_ACTIONS") == "true"
-
+// 注意:pluginManagement 块会被 Gradle 提取到脚本最前执行,
+// 块外声明的变量在其中不可见,因此各块内独立求值。
 pluginManagement {
+    val onCi = System.getenv("GITHUB_ACTIONS") == "true"
     repositories {
         if (onCi) {
             google()
@@ -20,6 +20,7 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
+    val onCi = System.getenv("GITHUB_ACTIONS") == "true"
     repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
         if (!onCi) {
